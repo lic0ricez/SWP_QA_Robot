@@ -1,0 +1,68 @@
+*** Settings ***
+Library    Selenium2Library
+Test Teardown    Close Browser
+
+*** Variables ***
+
+*** Testcases ***
+Success case
+	Visit to Login Page
+	Input Correct Username and Password
+	Correct Verification
+
+User Failure case
+	Visit to Login Page
+	Input Incorrect Username and Correct Password
+	Incorrect Verification
+
+Password Failure case
+	Visit to Login Page
+	Input Correct Username and Incorrect Password
+	Incorrect Verification
+
+Both Failure case
+	Visit to Login Page
+	Input Incorrect Username and Incorrect Password
+	Incorrect Verification
+
+Empty
+	Visit to Login Page
+	Empty Username Password
+	Incorrect Verification
+
+*** Keywords ***
+Visit to Login Page
+	Open Browser    http://localhost:7272/html/
+
+Input Correct Username and Password
+	Input Text    username_field    demo
+	Input Password    password_field    mode
+	Click Button    login_button
+
+Correct Verification
+	Wait Until Page Contains    Login succeeded
+	Title Should Be    Welcome Page
+
+Input Incorrect Username and Correct Password
+	Input Text    username_field    invalid
+	Input Password    password_field    mode
+	Click Button    login_button
+
+Input Correct Username and Incorrect Password
+	Input Text    username_field    demo
+	Input Password    password_field    invalid
+	Click Button    login_button
+
+Incorrect Verification
+	Wait Until Page Contains    Login failed
+	Title Should Be    Error Page
+
+Input Incorrect Username and Incorrect Password
+	Input Text    username_field    invalid
+	Input Password    password_field    invalid
+	Click Button    login_button
+
+Empty Username Password
+	Input Text    username_field    ${EMPTY}
+	Input Password    password_field    ${EMPTY}
+	Click Button    login_button

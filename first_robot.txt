@@ -1,0 +1,15 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+Log in to Facebook
+	Open Browser    http://www.facebook.com
+	Input Text    email    66804409944
+	Input Text    pass    \#029503792*
+	Click Button    u_0_l
+	Wait Until Page Contains    Charm
+	Close Browser
+
+*** Keywords ***

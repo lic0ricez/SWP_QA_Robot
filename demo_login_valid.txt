@@ -1,0 +1,15 @@
+*** Settings ***
+Library    Selenium2Library
+Test Teardown    Close Browser
+Resource    demo_login_resource.txt
+
+*** Variables ***
+
+
+*** Testcases ***
+Success case
+	Visit to Login Page
+	Input Correct Username and Password
+	Correct Verification
+
+*** Keywords ***

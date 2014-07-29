@@ -1,0 +1,24 @@
+*** Variable ***
+${LOGIN_URL}    http://localhost:7272/html/
+*** Keywords ***
+Visit to Login Page
+	Open Browser    ${LOGIN_URL}
+
+Input Correct Username and Password
+	Input Text    username_field    demo
+	Input Password    password_field    mode
+	Click Button    login_button
+
+Correct Verification
+	Wait Until Page Contains    Login succeeded
+	Title Should Be    Welcome Page
+
+Input Username and Password
+	[Arguments]    ${username}    ${password}
+	Input Text    username_field    ${username}
+	Input Password    password_field    ${password}
+	Click Button    login_button
+
+Incorrect Verification
+	Wait Until Page Contains    Login failed
+	Title Should Be    Error Page

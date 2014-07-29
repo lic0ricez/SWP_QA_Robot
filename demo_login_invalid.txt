@@ -1,0 +1,22 @@
+*** Settings ***
+Library    Selenium2Library
+Test Teardown    Close Browser
+Resource    demo_login_resource.txt
+
+*** Variables ***
+
+*** Testcases ***
+Invalid login
+	[Template]    Validate login
+		invalid      mode
+		demo         invalid
+		invalid      invalid
+		${EMPTY}     ${EMPTY}
+
+*** Keywords ***
+Validate login
+	[Arguments]    ${username}    ${password}
+	Visit to Login Page
+	Input Username and Password    ${username}    ${password}
+	Incorrect Verification
+
